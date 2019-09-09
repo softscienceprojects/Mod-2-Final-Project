@@ -28,13 +28,22 @@
 
 
 # ## EVENTS
-# event1 = Event.create(title: "Chris Ofili", event_date: "2019-12-31", event_time: "10:00", description: "A retrospective of artists' works", category_id: 1, venue_id: 1, user_id: 1)
-# event2 = Event.create(title: "That band you like", event_date: "2019-11-15", event_time: "19:00", description: "They're going to play their instruments live in front of you", category_id: 2, venue_id: 2, user_id: 2)
-# event3 = Event.create(title: "Superstar DJ night", event_date: "2020-01-10", event_time: "22:00", description: "Record scratch noises", category_id: 3, venue_id: 3, user_id: 3)
+# event1 = Event.create(title: "Chris Ofili", event_date: "2019-12-31", event_time: "10:00", description: "A retrospective of artists' works", category_id: 13, venue_id: 13, user_id: 11)
+# event2 = Event.create(title: "That band you like", event_date: "2019-11-15", event_time: "19:00", description: "They're going to play their instruments live in front of you", category_id: 14, venue_id: 14, user_id: 12)
+# event3 = Event.create(title: "Superstar DJ night", event_date: "2020-01-10", event_time: "22:00", description: "Record scratch noises", category_id: 15, venue_id: 15, user_id: 13)
 
 
-## REVIEWS 
-erinsreview = Review.create(title: "Wow this was really nice", content: "This art show was so good, I really like to look at paintings. :) :)", user_id: 1, rating: 3)
-bensreview = Review.create(title: "the best !!", content: "There is nothing better than going to see musicians play their instruments live in front of me. good sound system", user_id: 2, rating: 5)
-tegansreview = Review.create(title: "this was the worst night of my life", content: "This evening was absolutely terrible. To anyone who thinks that they should go here, STAY AWAY", user_id: 3, rating: 1)
+# ## REVIEWS 
+# erinsreview = Review.create(title: "Wow this was really nice", content: "This art show was so good, I really like to look at paintings. :) :)", event_id: 4, rating: 3)
+# bensreview = Review.create(title: "the best !!", content: "There is nothing better than going to see musicians play their instruments live in front of me. good sound system", event_id: 5, rating: 5)
+# tegansreview = Review.create(title: "this was the worst night of my life", content: "This evening was absolutely terrible. To anyone who thinks that they should go here, STAY AWAY", event_id: 6, rating: 1)
 
+## EVENT ATTENDEES
+attendee1 = EventAttendee.create(user_id: 11, event_id: 4)
+attendee2 = EventAttendee.create(user_id: 12, event_id: 4)
+attendee3 = EventAttendee.create(user_id: 13, event_id: 4)
+
+attendee4 = EventAttendee.create(user_id: 11, event_id: 5)
+attendee5 = EventAttendee.create(user_id: 12, event_id: 5)
+
+attendee6 = EventAttendee.create(user_id: 11, event_id: 6)

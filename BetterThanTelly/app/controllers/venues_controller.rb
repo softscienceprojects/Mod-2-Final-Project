@@ -19,7 +19,7 @@ class VenuesController < ApplicationController
 
     private
 
-    def find_category
+    def find_venue
         @venue = Venue.find(params[:id])
     end
 

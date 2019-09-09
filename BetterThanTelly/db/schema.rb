@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_09_100432) do
+ActiveRecord::Schema.define(version: 2019_09_09_113503) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,15 +28,6 @@ ActiveRecord::Schema.define(version: 2019_09_09_100432) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["event_id"], name: "index_event_attendees_on_event_id"
     t.index ["user_id"], name: "index_event_attendees_on_user_id"
-  end
-
-  create_table "event_reviews", force: :cascade do |t|
-    t.bigint "event_id", null: false
-    t.bigint "review_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["event_id"], name: "index_event_reviews_on_event_id"
-    t.index ["review_id"], name: "index_event_reviews_on_review_id"
   end
 
   create_table "events", force: :cascade do |t|
@@ -57,11 +48,11 @@ ActiveRecord::Schema.define(version: 2019_09_09_100432) do
   create_table "reviews", force: :cascade do |t|
     t.string "title"
     t.string "content"
-    t.bigint "user_id", null: false
     t.integer "rating"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_reviews_on_user_id"
+    t.bigint "event_id", null: false
+    t.index ["event_id"], name: "index_reviews_on_event_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -81,10 +72,8 @@ ActiveRecord::Schema.define(version: 2019_09_09_100432) do
 
   add_foreign_key "event_attendees", "events"
   add_foreign_key "event_attendees", "users"
-  add_foreign_key "event_reviews", "events"
-  add_foreign_key "event_reviews", "reviews"
   add_foreign_key "events", "categories"
   add_foreign_key "events", "users"
   add_foreign_key "events", "venues"
-  add_foreign_key "reviews", "users"
+  add_foreign_key "reviews", "events"
 end

@@ -1,0 +1,13 @@
+<h1><%= @review.title %></h1>
+
+<p><%= @review.content %></p>
+
+<p>reviewer name: <%= @review.event.user.name %></p>
+
+<p>For the event: <%= link_to @review.event.title, event_path(@review.event) %></p>
+<p>At venue: <%= link_to @review.event.venue.name, venue_path(@review.event.venue) %></p>
+<p>In category: <%= link_to @review.event.category.name, category_path(@review.event.category) %></p>
+
+<p>Review written on: <%= @review.created_at.strftime("%B %-d, %Y") %></p>
+
+
