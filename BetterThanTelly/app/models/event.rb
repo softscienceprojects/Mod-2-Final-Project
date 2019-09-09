@@ -10,9 +10,11 @@ class Event < ApplicationRecord
 
   accepts_nested_attributes_for :venue
 
-  # def attend(user, event)
-  #   attend = EventAttendee.create(user_id: user, event_id: event)
-  # end
+  def event_in_future
+    if self.event_date > Date.today
+      self
+    end
+  end
 
 
 end

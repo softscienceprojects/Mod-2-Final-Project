@@ -1,13 +1,12 @@
+
 <h1><%= @event.title %></h1>
-
-
-
+<p>Category: <%= link_to @event.category.name, category_path(@event.category) %></p>
 
 <p><%= @event.description %></p>
 <p>Hosted by: <%= @event.user.name %></p>
 
 <h4>Location:</h4>
-<p><%= @event.venue.name %></p>
+<p><%= link_to @event.venue.name, venue_path(@event.venue) %></p>
 <p><%= @event.venue.address %></p>
 
 <h4>Date</h4>
@@ -18,11 +17,15 @@
 
 <br>
 
+<% if @event.user.id == session[:user_id] %>
+    <p>This is your event!</p>
+    <%= link_to "Edit this event", edit_event_path %>
+<% elsif @event.users.include?(session[:user_id]) %>
+    <p>You're going to this event!</p>
+    Cancel attendance
+<% else %>
+    <%= button_to 'Attend this event', {:controller => "event_attendees", :action => "create", :event_id => @event.id, :user_id=> session[:user_id]} , :method=>:post  %>
+
+<% end %>
 
 
-        
-
-  
-
-
-<p>Category: <%= @event.category.name %></p>

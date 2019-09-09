@@ -1,4 +1,12 @@
 <h1><%= @category.name %></h1>
 
-On this page you can see the events for this category
+<h4>All events</h4>
+
+<ul>
+<% @category.events.each do |event| %>
+
+    <li><%= link_to event.title, event_path(event) %></li>
+
+<% end %>
+</ul>
 

@@ -1,0 +1,32 @@
+<h1>Edit <%= @event.title %></h1>
+
+<ul>
+    <%= form_for(@event) do |f| %>
+        
+        <%= f.hidden_field :user_id, :value=> session[:user_id] %>
+      <li> <p> <%= f.label :title %></p>
+        <%= f.text_field :title %>  </li>
+
+      <li><p> <%= f.label :event_date %> </p>
+        <%= f.date_field :event_date %> </li> 
+
+      <li> <p> <%= f.label :event_time %> </p>
+        <%= f.time_field :event_time %> </li>
+
+      <li> <p> <%= f.label :venue %> </p>
+        <%= f.collection_select :venue_id, Venue.all, :id, :name, include_blank: 'Please choose a venue' %> </li>
+
+      <li> <p><%= f.label :description %> </p>
+        <%= f.text_area :description %> </li> 
+
+     <li> <p> <%= f.label :category %> </p> 
+        <%= f.collection_select :category_id, Category.all, :id, :name, include_blank: 'Please choose a category' %></li> 
+    
+
+    <%= f.submit %>
+<% end %>
+  </ul>
+
+
+  <h4>Delete event?</h4>
+  <%= link_to 'Delete event', @event, { method: 'delete', data: {confirm: 'Are you sure?'} } %>

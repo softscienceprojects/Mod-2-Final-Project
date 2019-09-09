@@ -1,4 +1,4 @@
-<h1>Sign up to become a user</h1>
+<h1>Sign up to BetterThanTelly</h1>
 
 <ul>
 <%= form_for(@user) do |f| %>
@@ -9,3 +9,6 @@
      <%= f.submit %>
 <% end %>
   </ul>
+
+  <h3>Already have an account?</h3>
+  <p><%= link_to "Sign in!", login_path %></p>
