@@ -1,1 +1,11 @@
 <h1>Edit your user profile page</h1>
+
+<ul>
+<%= form_for(@user) do |f| %>
+     <li>Name: <%= f.text_field :name %></li>
+     <li>Email: <%= f.email_field :email %></li>
+     <li>Password: <%= f.password_field :password %></li>
+     <li>Confirm your password: <%= f.password_field :password_confirmation %></li>
+     <%= f.submit %>
+<% end %>
+  </ul>
