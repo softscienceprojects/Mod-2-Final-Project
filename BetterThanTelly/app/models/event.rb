@@ -10,11 +10,16 @@ class Event < ApplicationRecord
 
   accepts_nested_attributes_for :venue
 
-  def event_in_future
-    if self.event_date > Date.today
-      self
-    end
+  def event_in_future?
+    self.event_date > Date.today
   end
 
+  def event_attendees_list
+      self.users
+  end
+
+  def attendance?
+    !self.users.include?(@current_user)
+  end
 
 end

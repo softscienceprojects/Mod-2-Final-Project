@@ -10,4 +10,4 @@
 
 <p>Review written on: <%= @review.created_at.strftime("%B %-d, %Y") %></p>
 
-
+<%= link_to "Edit this review", edit_review_path(@review) %>

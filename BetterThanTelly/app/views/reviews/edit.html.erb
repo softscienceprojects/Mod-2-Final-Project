@@ -1,0 +1,21 @@
+
+<h1>Edit <%= @review.title %></h1>
+
+<ul>
+    <%= form_for(@review) do |f| %>
+        
+      <li> <p> <%= f.label :title %></p>
+        <%= f.text_field :title %>  </li>
+
+      <li> <p><%= f.label :content %> </p>
+        <%= f.text_area :content %> </li> 
+
+     <li> <p> <%= f.label :rating %> </p> 
+            <%= f.number_field :rating %>    
+
+    <%= f.submit %>
+<% end %>
+  </ul>
+
+  <h4>Delete review?</h4>
+  <%= link_to 'Delete review', @review, { method: 'delete', data: {confirm: 'Are you sure?'} } %>

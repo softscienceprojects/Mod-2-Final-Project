@@ -9,7 +9,7 @@ class EventsController < ApplicationController
 
     def show
         @attend = EventAttendee.new
-
+        
     end
 
 

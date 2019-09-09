@@ -4,5 +4,9 @@ class User < ApplicationRecord
 
     has_secure_password
 
+    def attendance_list
+        #self.
+    end
+
     
 end

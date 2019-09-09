@@ -25,7 +25,30 @@
     Cancel attendance
 <% else %>
     <%= button_to 'Attend this event', {:controller => "event_attendees", :action => "create", :event_id => @event.id, :user_id=> session[:user_id]} , :method=>:post  %>
-
 <% end %>
 
+<%= @event.users.include?(@current_user) %>
+<%= @event.event_in_future? %>
+<%= @event.attendance? %>
 
+
+<br><br><br><br>
+
+This event belongs to you (you are the host) && this event is in the future
+LINK EDIT EVENT
+
+This event is in the future && you are attending
+YOU'RE GOING TO THIS EVENT
+
+This event is in the future && you are neither the host or attending
+BUTTON ATTEND THIS EVENT
+
+This event is in the past && you are the host
+READ REVIEWS
+
+This event is oin the past && you are not the host
+READ REVIEWS | LEAVE A REVIEW
+
+
+
+<%= link_to "Leave a review about this event", new_review_path %>
