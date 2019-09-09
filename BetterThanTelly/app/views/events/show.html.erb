@@ -1,1 +1,32 @@
-<%= @event.title %>
+<h1><%= @event.title %></h1>
+
+
+
+
+<p><%= @event.description %></p>
+<p>Hosted by: <%= @event.user.name %></p>
+
+<h4>Location:</h4>
+<p><%= @event.venue.name %></p>
+<p><%= @event.venue.address %></p>
+
+<h4>Date</h4>
+<p><%= @event.event_date.strftime("%A %-d %B %Y") %></p>
+
+<h4>Time</h4>
+<p><%= @event.event_time.strftime("%H:%M") %></p>
+
+<br>
+<% going = @event.users %>
+<% if going.include?(session[:user_id]) %>
+    <p>You're attending this event!</p>
+<% else %>
+    <%= form_for(@attend) do |f| %>
+            <%= f.submit "Attend this event" %>
+    <% end %>    
+<% end %>
+    
+  
+
+<p>Category: <%= @event.category.name %></p>
+

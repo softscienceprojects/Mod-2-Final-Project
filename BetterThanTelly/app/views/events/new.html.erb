@@ -1,0 +1,34 @@
+<h1>Create an event</h1>
+
+<% if !logged_in? %>
+Hello! Please <%= link_to "Log in", login_path %>
+<% else %>
+
+    <%= form_for(@event) do |f| %>
+        
+        <%= f.hidden_field :user_id, :value=> session[:user_id] %>
+        <%= f.label :title %>
+        <%= f.text_field :title %>  
+
+        <%= f.label :event_date %>
+        <%= f.date_field :event_date %>
+
+        <%= f.label :event_time %>
+        <%= f.time_field :event_time %>
+
+        <%= f.label :venue %>
+        <%= f.collection_select :venue_id, Venue.all, :id, :name, include_blank: 'Please choose a venue' %>
+
+        <%= f.label :description %>
+        <%= f.text_area :description %>
+
+        <%= f.label :category %>
+        <%= f.collection_select :category_id, Category.all, :id, :name, include_blank: 'Please choose a category' %>
+    
+
+    <%= f.submit %>
+<% end %>
+  
+
+
+<% end %>

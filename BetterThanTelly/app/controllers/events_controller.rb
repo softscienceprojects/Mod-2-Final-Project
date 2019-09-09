@@ -5,12 +5,21 @@ class EventsController < ApplicationController
         @events = Event.all
     end
 
-    def show
 
+    def show
+        @attend = EventAttendee.new
+        @attending = @event.attend(session[:user_id], params[:id])
+        if @attending != nil
+            flash[:notice] = "You're going!"
+            # redirect_to event_path(params[:id])
+        end
+        @attending = nil
     end
+
 
     def new
         @event = Event.new
+        @user = session[:user_id]
     end
 
     def create
