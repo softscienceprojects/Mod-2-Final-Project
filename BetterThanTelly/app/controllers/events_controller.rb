@@ -8,12 +8,12 @@ class EventsController < ApplicationController
 
     def show
         @attend = EventAttendee.new
-        @attending = @event.attend(session[:user_id], params[:id])
-        if @attending != nil
-            flash[:notice] = "You're going!"
-            # redirect_to event_path(params[:id])
-        end
-        @attending = nil
+        # @attending = @event.attend(session[:user_id], params[:id])
+        # if @attending != nil
+        #     flash[:notice] = "You're going!"
+        #     # redirect_to event_path(params[:id])
+        # end
+        # @attending = nil
     end
 
 

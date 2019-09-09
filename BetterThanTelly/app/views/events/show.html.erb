@@ -17,16 +17,12 @@
 <p><%= @event.event_time.strftime("%H:%M") %></p>
 
 <br>
-<% going = @event.users %>
-<% if going.include?(session[:user_id]) %>
-    <p>You're attending this event!</p>
-<% else %>
-    <%= form_for(@attend) do |f| %>
-            <%= f.submit "Attend this event" %>
-    <% end %>    
-<% end %>
-    
+
+
+
+        
+
   
 
-<p>Category: <%= @event.category.name %></p>
 
+<p>Category: <%= @event.category.name %></p>

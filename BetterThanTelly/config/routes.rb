@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   post '/logout', to: 'sessions#destroy'
   resources :event_reviews
-  resources :event_attendees
+  # resources :event_attendees
+  post '/event_attendees_path/:id', to: 'event_attendees#create', as: 'attend_event'
   resources :events
   resources :venues
   resources :categories
