@@ -34,17 +34,27 @@ class User < ApplicationRecord
 
     def get_favourite_cat_by_attendence
        all_cats = get_events.map{|event|event.category_id}
+       if all_cats != []
        favourite_cat = all_cats.max_by{|cat|all_cats.count(cat)}
        Category.find(favourite_cat).name
+       else
+        0
+       end
     end
 
     def get_favourite_cat_by_reviews
         all_reviews = Review.where(user_id: self.id)
-        cat_hash  = Hash.new(0)
-        all_reviews.each do |review|
-            cat_hash[review.event.category.name] += review.rating
-        end
-        cat_hash.sort_by {|category,total_rating|total_rating}.last[0]
+            if all_reviews != []
+                cat_hash  = Hash.new(0)
+                all_reviews.each do |review|
+                cat_hash[review.event.category.name] += review.rating
+                end
+                cat_hash.sort_by {|category,total_rating|total_rating}.last[0]
+            else
+            0
+            end
     end
+
+
     
 end#class end
