@@ -4,7 +4,7 @@
 Please <%= link_to "log in", login_path %> to create an event
 <% else %>
 
-<% if @attended_events == []  %>
+<% if @user.get_past_events == []  %>
   <h4>You cannot write a review without attending any events!</h4>
 <% else %>
 <ul>
@@ -12,8 +12,6 @@ Please <%= link_to "log in", login_path %> to create an event
     <%= f.hidden_field :user_id, :value=> session[:user_id] %>
       <li> <p><%=f.label :event_id %></p></li>
         <%=f.collection_select :event_id, @user.get_past_events, :id, :title %>
-
-      <!-- f.select :event_id, @attended_events.title-->
 
       <li> <p> <%= f.label :title %></p>
         <%= f.text_field :title %>  </li>
@@ -35,3 +33,15 @@ Please <%= link_to "log in", login_path %> to create an event
   
 <% end %>
   
+
+    <% flash.each do |name, messages| %>
+  <div class="flash-errors">
+
+  <ul>
+  <% messages.each do |message| %>
+    <li><%= message %></li>
+  <% end %>
+  </ul>
+
+  </div>
+<% end %>
