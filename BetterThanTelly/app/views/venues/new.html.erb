@@ -1,16 +1,20 @@
-<h1>Make a new Venue</h1>
+<div class="row">
+  <div class="col-12">
+  <h1>Make a new Venue</h1>
+  </div>
+</div>
 
-<div class="new-form">
+<div class="flex-container">
 <%= form_for(@venue) do |f| %>
-    <%= f.label :name %>
-    <%= f.text_field :name  %> 
+    <p><%= f.label :name %>
+    <%= f.text_field :name  %> </p>
 
-    <%= f.label :address %>
-    <%= f.text_field :address %>
+    <p><%= f.label :address %>
+    <%= f.text_field :address %></p>
 
     <%= f.submit %>
 <% end %>
-</div>
+
   
   <% flash.each do |name, messages| %>
   <div class="flash-errors">

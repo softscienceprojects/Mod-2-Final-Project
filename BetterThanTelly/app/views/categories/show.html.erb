@@ -1,12 +1,19 @@
-<h1><%= @category.name %></h1>
+<div class="row">
+    <div class="col-12">
+        <h1><%= @category.name %></h1>
+        <p>All events</p>
+    </div>
+</div>
 
-<h4>All events</h4>
 
-<ul>
-<% @category.events.each do |event| %>
 
-    <li><%= link_to event.title, event_path(event) %></li>
+<div class="flex-container">
+    <% @category.events.each do |event| %>
+      <div> 
+      <h4> <%= link_to event.title, event_path(event) %></h4>
+      </div>
 
-<% end %>
-</ul>
+    <% end %>
+</div>
+
 

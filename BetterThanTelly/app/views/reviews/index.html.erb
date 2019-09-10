@@ -1,11 +1,15 @@
-<h1>Reviews</h1>
-
-<ul>
-<% @reviews.each do |review| %>
-
-
-<li><%= link_to review.event.title, review_path(review) %></li>
-<% end %>
+<div class="row">
+    <div class="col-12">
+        <h1>Reviews</h1>
+    </div>
+</div>
 
 
-</ul>
+<div class="row">
+    <% @reviews.each do |review| %>
+        <div class="col-4">    
+        <h4>"<%= link_to review.title, review_path(review) %>"</h4>
+        <p><%= link_to review.event.title, review_path(review) %></p>
+        </div>
+    <% end %>
+</div>

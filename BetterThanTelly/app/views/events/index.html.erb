@@ -1,7 +1,12 @@
-<h1>Events</h1>
 
-<% @events.each do |event| %>
+<div class="flex-container">
+    <% @events.each do |event| %>
+        <div>
+            <h2><%= link_to event.title, event_path(event) %></h2>
+            <h4><%= event.event_date.strftime("%A %-d %B %Y") %></h4>
+        </div>
+    <% end %>
+</div>
 
-<%= link_to event.title, event_path(event) %>
+     
 
-<% end %>

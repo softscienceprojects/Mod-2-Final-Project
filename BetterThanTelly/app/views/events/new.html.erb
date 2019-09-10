@@ -1,31 +1,44 @@
-<h1>Create an event</h1>
+<div class="row">
+  <div class="col-12">
+  <h1>Create an event</h1>
+  </div>
+</div>
+
+<div class="flex-container">
 
 <% if !logged_in? %>
 Please <%= link_to "log in", login_path %> to create an event
 <% else %>
-
-<div class="new-form">
+<div class="block-container">
     <%= form_for(@event) do |f| %>
         
         <%= f.hidden_field :user_id, :value=> session[:user_id] %>
+        <p>
         <%= f.label :title %>
-        <%= f.text_field :title %>  
+        <%= f.text_field :title %>  </p>
 
+        <p>
         <%= f.label :event_date %>
-        <%= f.date_field :event_date %>
+        <%= f.date_field :event_date %> </p>
 
+        <p>
         <%= f.label :event_time %>
-        <%= f.time_field :event_time %>
+        <%= f.time_field :event_time %> </p>
 
+        <p>
         <%= f.label :venue %>
         <%= f.collection_select :venue_id, Venue.all, :id, :name, include_blank: 'Please choose a venue' %>
+        </p>
 
+        <p>
         <%= f.label :description %>
         <%= f.text_area :description %>
+        </p>
 
+        <p>
         <%= f.label :category %>
         <%= f.collection_select :category_id, Category.all, :id, :name, include_blank: 'Please choose a category' %>
-    
+        </p>
 
     <%= f.submit %>
 <% end %>
@@ -38,7 +51,7 @@ Please <%= link_to "log in", login_path %> to create an event
 
   <ul>
   <% messages.each do |message| %>
-    <li><%= message %></li>
+    <p><%= message %></p>
   <% end %>
   </ul>
 

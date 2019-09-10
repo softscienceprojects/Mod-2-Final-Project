@@ -1,33 +1,40 @@
+
+<div class = "flex-container">
 <h1>Write a review</h1>
+</div>
 
 <% if !logged_in? %>
+<div class = "flex-container">
 Please <%= link_to "log in", login_path %> to create an event
+</div>
 <% else %>
 
 <% if @user.get_past_events == []  %>
+<div class = "flex-container">
   <h4>You cannot write a review without attending any events!</h4>
+</div>
 <% else %>
-<ul>
+
+<div class="flex-container">
     <%= form_for(@review) do |f| %>
     <%= f.hidden_field :user_id, :value=> session[:user_id] %>
-      <li> <p><%=f.label :event_id %></p></li>
+       <p><%=f.label :event_id %></p>
+
         <%=f.collection_select :event_id, @user.get_past_events, :id, :title %>
 
-      <li> <p> <%= f.label :title %></p>
-        <%= f.text_field :title %>  </li>
+       <p> <%= f.label :title %></p>
+        <%= f.text_field :title %>  
 
-      <li> <p><%= f.label :content %> </p>
-        <%= f.text_area :content %> </li> 
+       <p><%= f.label :content %> </p>
+        <%= f.text_area :content %>  
 
-     <li> <p> <%= f.label :rating %> </p> 
-        <%= f.select :rating, @rating_range %></li>
+      <p> <%= f.label :rating %> </p> 
+        <%= f.select :rating, @rating_range %>
          
-
     <p><%= f.submit %></p>
-    
+</div>    
+  <% end %>
 
-<% end %>
-  </ul>
 <% end %>
 
   
@@ -37,9 +44,9 @@ Please <%= link_to "log in", login_path %> to create an event
     <% flash.each do |name, messages| %>
   <div class="flash-errors">
 
-  <ul>
+  
   <% messages.each do |message| %>
-    <li><%= message %></li>
+    <%= message %>
   <% end %>
   </ul>
 

@@ -1,60 +1,83 @@
-<h1>Welcome to your user homepage, <%= @user.name %></h1>
+<div class="row">
+    <div class="col-12">
+        <h1>Welcome to your user homepage, <%= @user.name %></h1>
+        <p><%= link_to "Edit your account", edit_user_path(@user) %></p>
+    </div>
+</div>
 
-
-
-<%= link_to "Edit your account", edit_user_path(@user) %>
-
-<h4>Future Events you are going to</h4>
-
-<ul>
-<% if @future_events == []  %>
-    <li> <p>You're not going to any events. <%= link_to "Find something to attend!", events_path %></p></li> 
-<% else %>
-            <% @future_events.each do |event|  %>
-            <li><%= link_to event.title, event_path(event) %></li>
-            <% end %>
-<% end %>
-</ul>
-
-
-<h4>Future Events you are hosting</h4>
-<ul>
-<% if @hosting_future == []  %>
-    <li> You're not hosting any events. <%= link_to "Host an event!", new_event_path %></li> 
-<% else %>
-            <% @hosting_future.each do |event|  %>
-            <li><%= link_to event.title, event_path(event) %></li>
-            <% end %>
-<% end %>
-</ul>
-
+<div class="flex-container">
+    <h4>Future Events you are going to</h4>
+    
+        <div class="block-container">
+        <% if @future_events == []  %>
+            <p>You're not going to any events. <%= link_to "Find something to attend!", events_path %></p> 
+         <% else %>
+        <% @future_events.each do |event|  %>
+            <p><%= link_to event.title, event_path(event) %></p>
+        <% end %>
+        <% end %>
+         </div>
+</div>
 
 <hr>
-<h4>Past events you have attended</h4>
-<ul>
-<% if @past_events == []  %>
-    <li>You have not attended any events.</li> 
-<% else %>
-            <% @past_events.each do |event|  %>
-            <li><%= link_to event, event_path(event) %></li>
-            <% end %>
-<% end %>
-</ul>
+<div class="flex-container">
+    <h4>Future Events you are hosting</h4>
+    
+    <div class="box-container">
+    <% if @hosting_future == []  %>
+        <p>You're not hosting any events. <%= link_to "Host an event!", new_event_path %></p>
+    <% else %>
+        <% @hosting_future.each do |event|  %>
+            <p><%= link_to event.title, event_path(event) %></p>
+        <% end %>
+    <% end %>
+    </div>
+</div>
 
+<hr>
 
+<div class="flex-container">
+    <h4>Past events you have attended</h4>
+    <div class="box-container">
+    <% if @past_events == []  %>
+        You have not attended any events. 
+    <% else %>
+                <% @past_events.each do |event|  %>
+                <p><%= link_to event.title, event_path(event) %></p>
+                <% end %>
+    <% end %>
+    </div>
+    </div>
+
+<hr>
+
+<div class="flex-container">
 <h4>Past events you have hosted</h4>
-<ul>
-<% if @hosting_past == []  %>
-    <li>You have not hosted any events</li> 
-<% else %>
-            <% @hosting_past.each do |event|  %>
-            <li><%= link_to event.title, event_path(event) %></li>
-            <% end %>
-<% end %>
-</ul>
+
+    <div class="box-container">
+    <% if @hosting_past == []  %>
+        You have not hosted any events
+    <% else %>
+                <% @hosting_past.each do |event|  %>
+                <p><%= link_to event.title, event_path(event) %></p>
+                <% end %>
+    <% end %>
+    </div>
+</div>
+
 
 <hr>
+<div class="flex-container">
 <h4>Recommended events for you</h4>
+    <div class="box-container">
+    <!-- logic stuff here -->
+
+    </div>
+
+
+</div>
+
+
 
 
 

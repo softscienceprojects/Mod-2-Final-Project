@@ -1,13 +1,26 @@
-<h1><%= @venue.name %></h1>
-<p>address: <%= @venue.address %></p>
+<div class="row">
+<div class="col-12">
+    <h1><%= @venue.name %></h1>
+    <p><%= @venue.address %></p>
+</div>
+</div>
 
-<h4>Upcoming Events at this venue</h4>
-<ul>
-<% @venue.events.each do |event|  %>
-<li><%= link_to event.title, event_path(event) %></li>
-<% end %>
-</ul>
+<div class="flex-container">
+    <div>
+    <h4>Upcoming Events at this venue</h4>
+    </div>
 
+    <div>
+    <% @venue.events.each do |event|  %>
+    <p>  <%= link_to event.title, event_path(event) %> </p>
+    <% end %>
+    </div>
+</div>
 
-<h4>Previous events at this venue</h4>
+<hr>
+<div class="flex-container">
 
+    <div>
+    <h4>Previous events at this venue</h4>
+    </div>
+</div>

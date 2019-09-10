@@ -4,6 +4,7 @@
 **/
 
 @import url(https://fonts.googleapis.com/css?family=Lato:400,300,300italic,400italic,700,700italic);
+@import url('https://fonts.googleapis.com/css?family=Work+Sans:900&display=swap');
 
 /* UNIVERSAL */
 
@@ -16,17 +17,27 @@ body {
   left: 0;
   top: 0;
   font-size: 100%;
+  background-color: #f2f0eb;
+  
 }
 
 /* ROOT FONT STYLES */
 
 * {
-  font-family: 'Lato', Helvetica, sans-serif;
+  /* font-family: 'Lato', Helvetica, sans-serif; */
   color: #333447;
   line-height: 1.5;
 }
 
 /* TYPOGRAPHY */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Work Sans', sans-serif;
+
+}
+
+p {
+  font-family: 'Helvetica', sans-serif;
+}
 
 h1 {
   font-size: 2.5rem;
@@ -122,6 +133,12 @@ p {
 .col-11,
 .col-12 {
   width: 96%;
+}
+
+.col-12 {
+  border-top: 5px solid black;
+  border-bottom: 5px solid black;
+  text-align: center;
 }
 
 .col-1-sm {
@@ -235,6 +252,7 @@ p {
 
   .col-12 {
     width: 96%;
+    text-align: center;
   }
 
   .hidden-sm {
@@ -247,4 +265,8 @@ p {
     width: 75%;
     max-width: 60rem;
   }
+}
+
+div h2, div h4 {
+  width: 200px;
 }
