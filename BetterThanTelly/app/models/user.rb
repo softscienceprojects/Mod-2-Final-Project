@@ -18,7 +18,6 @@ class User < ApplicationRecord
         get_events.select{|event| event.event_date < Date.today}
     end
 
-
     def get_future_events
         get_events.select{|event| event.event_date >= Date.today}
     end
