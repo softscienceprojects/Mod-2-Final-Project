@@ -9,7 +9,6 @@ class EventsController < ApplicationController
 
     def show
         #@attend = EventAttendee.new
-        
     end
 
 
@@ -20,7 +19,12 @@ class EventsController < ApplicationController
 
     def create
         @event = Event.create(event_params)
-        redirect_to event_path(@event)
+        if @event.valid?
+            redirect_to event_path(@event)
+        else 
+            flash[:errors] = @event.errors.full_messages
+            redirect_to new_event_path
+        end
     end
 
     def edit

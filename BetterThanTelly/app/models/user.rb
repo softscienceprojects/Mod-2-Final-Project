@@ -4,6 +4,8 @@ class User < ApplicationRecord
 
     has_secure_password
 
+    validates :name, :email, presence: true
+    validates :email, uniqueness: true
 
     def get_events
         self.events
@@ -28,6 +30,10 @@ class User < ApplicationRecord
 
     def get_future_host_events
         get_host_events.select{|event| event.event_date >= Date.today}
+    end
+
+    def attendance_list
+        #self.
     end
 
     
