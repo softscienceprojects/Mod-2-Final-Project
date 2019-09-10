@@ -12,3 +12,17 @@
 
   <h3>Already have an account?</h3>
   <p><%= link_to "Sign in!", login_path %></p>
+
+
+  
+  <% flash.each do |name, messages| %>
+     <div class="flash-errors">
+
+     <ul>
+     <% messages.each do |message| %>
+     <li><%= message %></li>
+     <% end %>
+     </ul>
+
+     </div>
+<% end %>
