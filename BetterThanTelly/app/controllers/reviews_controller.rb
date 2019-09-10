@@ -1,5 +1,6 @@
 class ReviewsController < ApplicationController
     before_action :find_review, only: [:show, :edit, :update, :destroy]
+    before_action :find_user, only: [:new]
 
     def index
         @reviews = Review.all
@@ -11,11 +12,14 @@ class ReviewsController < ApplicationController
 
     def new
         @review = Review.new
+        @rating_range = Review.rating_range
+        
     end
 
     def create
-        @review = Review.create(review_params)
-        redirect_to review_path(@review)
+        
+        new_review = Review.create(review_params)
+        redirect_to review_path(new_review)
     end
 
     def edit
@@ -38,7 +42,11 @@ class ReviewsController < ApplicationController
         @review=Review.find(params[:id])
     end
 
+    def find_user
+        @user=User.find(session[:user_id])
+    end
+
     def review_params
-        params.require(:review).permit(:title, :content, :user_id, :rating)
+        params.require(:review).permit(:title, :content, :user_id, :rating, :event_id)
     end
 end

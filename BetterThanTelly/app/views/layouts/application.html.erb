@@ -11,7 +11,7 @@
 
   <body>
   <nav>
-  <%= link_to "All Events", events_path %> | <%= link_to "View venues", venues_path %> | <%= link_to "Create an event", new_event_path %> | <%= link_to "View reviews", reviews_path %> | 
+  <%= link_to "All Events", events_path %> | <%= link_to "View venues", venues_path %> | <%= link_to "Create an event", new_event_path %> | <%= link_to "View reviews", reviews_path %> | <%= link_to "Create Review", new_review_path %> | 
   <% if logged_in? %>
     <%= link_to "Your profile", user_path(session[:user_id]) %> | <%= link_to "Logout", logout_path, method: :post %>
   <% else %>

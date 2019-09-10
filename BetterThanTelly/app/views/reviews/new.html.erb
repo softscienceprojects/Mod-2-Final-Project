@@ -1,11 +1,20 @@
 <h1>Write a review</h1>
 
+<% if !logged_in? %>
+Please <%= link_to "log in", login_path %> to create an event
+<% else %>
+
+<% if @attended_events == []  %>
+  <h4>You cannot write a review without attending any events!</h4>
+<% else %>
 <ul>
     <%= form_for(@review) do |f| %>
     <%= f.hidden_field :user_id, :value=> session[:user_id] %>
-    <%= f.hidden_field :event_id, :value=> params[:id] %>
+      <li> <p><%=f.label :event_id %></p></li>
+        <%=f.collection_select :event_id, @user.get_past_events, :id, :title %>
 
-      
+      <!-- f.select :event_id, @attended_events.title-->
+
       <li> <p> <%= f.label :title %></p>
         <%= f.text_field :title %>  </li>
 
@@ -13,8 +22,16 @@
         <%= f.text_area :content %> </li> 
 
      <li> <p> <%= f.label :rating %> </p> 
-            <%= f.number_field :rating %>    
+        <%= f.select :rating, @rating_range %></li>
+         
 
-    <%= f.submit %>
+    <p><%= f.submit %></p>
+    
+
 <% end %>
   </ul>
+<% end %>
+
+  
+<% end %>
+  
