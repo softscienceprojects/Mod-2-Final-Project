@@ -36,4 +36,6 @@ class Event < ApplicationRecord
     self.event_in_future? && self.event_attendee?
   end
 
+  
+
 end
