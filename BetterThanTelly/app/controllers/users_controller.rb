@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     def show
         @events = Event.all
         @past_events = @user.get_past_events
-        @future_events = @user.get_future_evetns
+        @future_events = @user.get_future_events
         @hosting_past = @user.get_past_host_events
         @hosting_future = @user.get_future_host_events
     end

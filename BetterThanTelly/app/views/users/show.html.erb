@@ -5,69 +5,53 @@
 <%= link_to "Edit your account", edit_user_path(@user) %>
 
 <h4>Future Events you are going to</h4>
+
 <ul>
-<% future_attending = @user.events %>
-    <% if future_attending == [] %>
+<% if @future_events == []  %>
     <li> <p>You're not going to any events. <%= link_to "Find something to attend!", events_path %></p></li> 
-    <% else %>
-        <% future_attending.each do |event| %>
-            <% if event.event_date > Date.today %>
-                <li> <%= link_to event.title, event_path(event) %></li>
-            <% else %>
-                <li> <p>You're not going to any events. <%= link_to "Find something to attend!", events_path %></p></li> 
+<% else %>
+            <% @future_events.each do |event|  %>
+            <li><%= link_to event.title, event_path(event) %></li>
             <% end %>
-    <% end %>
 <% end %>
 </ul>
 
+
 <h4>Future Events you are hosting</h4>
 <ul>
-<% future_hosting = @events.where(user_id: @user) %>
-    <% if future_hosting == [] %>
-        <li> You're not hosting any events. <%= link_to "Host an event!", new_event_path %></li>
-        
-        <% if future_hosting.each do |event| %>
-            <% event.event_date > Date.today %>
+<% if @hosting_future == []  %>
+    <li> You're not hosting any events. <%= link_to "Host an event!", new_event_path %></li> 
+<% else %>
+            <% @hosting_future.each do |event|  %>
             <li><%= link_to event.title, event_path(event) %></li>
             <% end %>
-        <% else %>
-        
-        <li> You're not hosting any events. <%= link_to "Host an event!", new_event_path %></li>
-    <% end %>
-    
-    <% end %>
-
+<% end %>
 </ul>
+
 
 <hr>
 <h4>Past events you have attended</h4>
 <ul>
-<% past_attending = @user.events %>
-    <% if past_attending == [] %>
-    <li> <p>You have not attended any events.</p></li> 
-    
-    <% else past_attending.each do |event| %>
-            <% if event.event_date < Date.today %>
-                <li> THIS NEEDS UPDATING <%= link_to event.title, event_path(event) %>   Event name, - leave a review</li>
+<% if @past_events == []  %>
+    <li>You have not attended any events.</li> 
+<% else %>
+            <% @past_events.each do |event|  %>
+            <li><%= link_to event, event_path(event) %></li>
             <% end %>
-    <% end %>
 <% end %>
 </ul>
 
 
 <h4>Past events you have hosted</h4>
-<% past_hosting = @events.where(user_id: @user) %>
-    <% if past_hosting == [] %>
-        <li> You have not hosted any events</li>
-        
-        <% else past_hosting.each do |event| %>
-            <% if event.event_date < Date.today %>
-            <li>EDIT THIS<%= link_to event.title, event_path(event) %>  see reviews</li>
+<ul>
+<% if @hosting_past == []  %>
+    <li>You have not hosted any events</li> 
+<% else %>
+            <% @hosting_past.each do |event|  %>
+            <li><%= link_to event.title, event_path(event) %></li>
             <% end %>
-        <% end %>
-    
-    <% end %>
-
+<% end %>
+</ul>
 
 <hr>
 <h4>Recommended events for you</h4>
