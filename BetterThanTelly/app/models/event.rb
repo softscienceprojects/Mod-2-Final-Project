@@ -10,6 +10,9 @@ class Event < ApplicationRecord
 
   accepts_nested_attributes_for :venue
 
+  validates: :title, :description, :event_date, :event_time, :venue_id, :category_id, presence: true
+
+
   def event_in_future?
     self.event_date > Date.today
   end
