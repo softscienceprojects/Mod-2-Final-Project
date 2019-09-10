@@ -1,5 +1,6 @@
 <h1>Sign up to BetterThanTelly</h1>
 
+<div class="new-form">
 <ul>
 <%= form_for(@user) do |f| %>
      <li>Name: <%= f.text_field :name %></li>
@@ -9,20 +10,20 @@
      <%= f.submit %>
 <% end %>
   </ul>
+  </div>
 
+<div>
   <h3>Already have an account?</h3>
   <p><%= link_to "Sign in!", login_path %></p>
-
+</div>
 
   
   <% flash.each do |name, messages| %>
      <div class="flash-errors">
-
      <ul>
      <% messages.each do |message| %>
-     <li><%= message %></li>
+          <li><%= message %></li>
      <% end %>
      </ul>
-
      </div>
-<% end %>
+  <% end %>

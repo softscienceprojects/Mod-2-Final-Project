@@ -1,6 +1,6 @@
 <h1>Make a new Venue</h1>
 
-
+<div class="new-form">
 <%= form_for(@venue) do |f| %>
     <%= f.label :name %>
     <%= f.text_field :name  %> 
@@ -10,6 +10,7 @@
 
     <%= f.submit %>
 <% end %>
+</div>
   
   <% flash.each do |name, messages| %>
   <div class="flash-errors">
