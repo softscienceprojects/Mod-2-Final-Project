@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   resources :event_reviews
   # resources :event_attendees
   post '/event_attendees_path/:id', to: 'event_attendees#create', as: 'attend_event'
+  post '/event_attendees_path/:id', to: 'event_attendees#destroy', as: 'cancel_attendance'
+
   resources :events
   resources :venues
   resources :categories
