@@ -10,6 +10,7 @@ class EventsController < ApplicationController
 
         #--insert event filter method here
         @events = Event.category_filter(params[:cat_search])
+        #@cat_select = Event.drop_down_select(@events)
     end
 
 

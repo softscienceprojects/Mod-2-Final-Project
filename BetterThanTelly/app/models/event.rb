@@ -44,21 +44,35 @@ class Event < ApplicationRecord
 
 
   def self.category_filter(search_term)
+    select_array = []
 
     if search_term.present?
       category = Category.find_by(name: search_term["name"])
       if category.present?
-        Event.all_future_events_in_date_order.select{|event|event.category_id == category.id}  
+        filtered = Event.all_future_events_in_date_order.select{|event|event.category_id == category.id}
+        select_array.unshift(filtered)
+        select_array.push(category.name)
       else
-        Event.all_future_events_in_date_order
+        select_array.unshift(Event.all_future_events_in_date_order)
+        select_array.push("All Categories")
       end
 
     else
-      Event.all_future_events_in_date_order
+      select_array.unshift(Event.all_future_events_in_date_order)
+        select_array.push("All Categories")
     end
   
   end
 
+  # def self.drop_down_select(events)
+  #     if events.present?
+  #     category = events.first.category_id
+  #     name = Category.find(category).name
+  #     else
+  #       name = "All Categories"
+  #     end
+  #     return name
+  # end
   
 
 end
