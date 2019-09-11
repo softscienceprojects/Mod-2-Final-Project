@@ -42,6 +42,16 @@ class Event < ApplicationRecord
     self.event_in_future? && self.event_attendee?
   end
 
+  def self.category_filter(search_term)
+    
+    if search_term != nil
+      category = Category.find_by(name: search_term["name"])
+        Event.all_future_events_in_date_order.select{|event|event.category_id == category.id}  
+    else
+      Event.all_future_events_in_date_order
+    end
+  end
+
   
 
 end

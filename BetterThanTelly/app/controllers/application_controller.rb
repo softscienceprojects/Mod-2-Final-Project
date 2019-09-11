@@ -7,7 +7,7 @@ helper_method :current_user, :logged_in?, :require_login
     end
 
     def logged_in?
-        !!current_user
+    #    !!current_user
     end
 
     def require_login

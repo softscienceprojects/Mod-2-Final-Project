@@ -5,7 +5,11 @@ class EventsController < ApplicationController
     def index
         #@events = Event.all.order(event_date: :asc )
         # @events = Event.all_future_events
-        @events = Event.all_future_events_in_date_order
+        
+        #@events = Event.all_future_events_in_date_order
+
+        #--insert event filter method here
+        @events = Event.category_filter(params[:cat_search])
     end
 
 
@@ -50,7 +54,7 @@ class EventsController < ApplicationController
     end
 
     def event_params
-        params.require(:event).permit(:title, :event_date, :event_time, :desription, :category_id, :venue_id, :user_id)
+        params.require(:event).permit(:title, :event_date, :event_time, :desription, :category_id, :venue_id, :user_id, :cat_search)
     end
 
 end
