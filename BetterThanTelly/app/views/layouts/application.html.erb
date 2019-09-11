@@ -22,16 +22,16 @@
 
   <div class="row">
     <ul class="nav">
-      <li><p><%= link_to "All Events", events_path %>  |  </p></li>
+      <li><p><%= link_to "All events", events_path %>  |  </p></li>
       <li><p><%= link_to "View venues", venues_path %>  |  </p></li>
       <li><p><%= link_to "Create an event", new_event_path %>  |  </p></li>
       <li><p><%= link_to "View reviews", reviews_path %>  |  </p></li>
-      <li><p><%= link_to "Create Review", new_review_path %>  |  </p></li>
+      <li><p><%= link_to "Create review", new_review_path %>  |  </p></li>
     <% if logged_in? %>
       <li><p><%= link_to "Your profile", user_path(session[:user_id]) %>  |  </p></li>
       <li><p><%= link_to "Logout", logout_path, method: :post %></p></li>
     <% else %>
-      <li><p><%= link_to "Log in", login_path %>  |  </p></li>
+      <li><p><%= link_to "Log in", login_path %>  </p></li>
       <li><p> or <%= link_to "Sign up", new_user_path %></p></li>
     <% end %>
     </ul>
