@@ -27,7 +27,7 @@
 
         
        <h4> <%= f.label :venue %></h4>
-       <p> <%= f.collection_select :venue_id, Venue.all, :id, :name, include_blank: 'Please choose a venue' %>
+       <p> <%= f.collection_select :venue_id, Venue.all, :id, :name, {include_blank: 'Please choose a venue'}, {:class=>"select"} %>
         </p>
 
         
@@ -36,7 +36,7 @@
 
         
         <h4><%= f.label :category %></h4>
-       <p> <%= f.collection_select :category_id, Category.all, :id, :name, include_blank: 'Please choose a category' %>
+       <p> <%= f.collection_select :category_id, Category.all, :id, :name, {include_blank: 'Please choose a category'}, {:class=>"select"} %>
         </p>
 
     <%= f.submit %>

@@ -145,9 +145,15 @@
     cursor: pointer;
 }
 
+
 .select {
     background-color: #333447;
-
+    color: white;
+    padding: 16px 32px;
+    cursor: pointer;
+    height: 50px;
+    -webkit-appearance: none;
+   
 }
 
 textfield {
@@ -165,6 +171,23 @@ textarea {
     padding: 16px;
 }
 
+.easteregg {  /*  ☺  */
+    position: relative;
+    display: relative;
+}
+
+.easteregg:hover {
+    display: none;
+}
+
+input[type=submit]:hover {
+    background-color: blueviolet;
+}
+
+
+/* FONTS */
+
+
 a.buttonlink {
     background-color:  #333447;
     border: none;
@@ -176,7 +199,6 @@ a.buttonlink {
     cursor: pointer;
 }
 
-/* FONTS */
 
 h1#logo a {
     text-shadow: -5px 5px #fff;

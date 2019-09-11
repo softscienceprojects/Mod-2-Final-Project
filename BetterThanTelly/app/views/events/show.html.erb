@@ -19,6 +19,7 @@
         <% elsif @event.event_in_future? && @event.users.find_by(id: session[:user_id]) %>
             <p>You're going to this event!</p>
         <% elsif @event.event_in_future? && @event.user.id != @current_user.id %>
+
         <%= button_to 'Attend this event', {:controller => "event_attendees", :action => "create", :event_id => @event.id, :user_id=> session[:user_id]}, :method=>:post  %>
         <% elsif !@event.event_in_future? %>
             <h4>See reviews:</h4>
@@ -36,6 +37,7 @@
         <% else %>
             :)
         <% end %>
+
     </div>
 </div>
 

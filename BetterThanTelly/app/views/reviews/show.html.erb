@@ -7,9 +7,12 @@
 <div class="flex-container">
     <div class="block-container">
     <div class="star-rating">
-                <% @review.rating.times do  %>
+        <% if @review.rating != nil %>
+            <% @review.rating.times do  %>
                 <h4> &#9734; </h4> 
                 <% end %>
+        <% end %>
+              
             </div>
     <p><%= @review.content %></p>
 
