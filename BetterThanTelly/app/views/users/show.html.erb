@@ -79,6 +79,12 @@
 <h2>Recommended events for you</h2>
     <div class="block-container">
     <!-- logic stuff here -->
+    <% @user.reccomend_me.each do |event| %>
+
+        <p><%= link_to Event.find(event).title, event_path(event) %></p>
+    
+    <% end %>
+    
 
     </div>
 
