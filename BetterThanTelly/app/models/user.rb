@@ -32,7 +32,7 @@ class User < ApplicationRecord
         get_host_events.select{|event| event.event_date >= Date.today}
     end
 
-    #Reccomendation Methods...
+    #Reccomendation Engine...
 
 
     def get_positive_reviews
@@ -42,15 +42,28 @@ class User < ApplicationRecord
     end
 
 
+    def top_three(list1,list2)
+        list_merge = list1.push(list2).flatten.each_slice(2).map(&:first).uniq
+        three_only = list_merge.first 3
+    end
+
+    def favourite_profile
+        categories = top_three(get_favourite_cat_by_reviews, get_favourite_cat_by_attendence)
+        hosts =  top_three(get_favourite_host_by_reviews, get_favourite_host_by_attendence)
+        venues = top_three(get_favourite_venue_by_reviews, get_favourite_host_by_attendence)
+        return "Categories: #{categories}, Hosts: #{hosts}, Venures #{venues}"
+    end
+
 
     #Category Based
     def get_favourite_cat_by_attendence
         if get_events != []
             cat_hash  = Hash.new(0)
             get_events.each do |event|    
-                cat_hash[event.category_id] += 1
+                cat_hash[event.category.name] += 1
             end
-            cat_hash.sort_by{|category,total_rating| -total_rating}.first 3
+            cat_hash.sort_by{|category,total_rating| -total_rating}#.first 3
+            #cat_hash.to_h
         else
         0
         end
@@ -60,9 +73,10 @@ class User < ApplicationRecord
         if get_positive_reviews != []
             cat_hash  = Hash.new(0)
             get_positive_reviews.each do |review|    
-                cat_hash[review.event.category_id] += review.rating
+                cat_hash[review.event.category.name] += review.rating
             end
-            cat_hash.sort_by{|category,total_rating| -total_rating}.first 3
+            cat_hash.sort_by{|category,total_rating| -total_rating}#.first 3
+            #cat_hash.to_h
         else
         0
         end
