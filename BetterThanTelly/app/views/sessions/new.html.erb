@@ -1,16 +1,23 @@
-<h1>Log in </h1>
+<div class="row">
+    <div class="col-12">
+        <h1>Log in </h1>
+    </div>
+</div>
 
 
-<ul>
+
+<div class="flex-container">
 <%= form_tag login_path do %>
-<li>email: <%= text_field_tag :email %></li>
-<li>password: <%= password_field_tag :password %></li>
+<p>email: <%= text_field_tag :email %></p>
+<p>password: <%= password_field_tag :password %></p>
 <%= submit_tag "Log in" %>
 <% end %>
-</ul>
+</div>
 
 
-<ul>
+
+<div class="flex-container">
 <h4>Don't have an account?</h4>
-<p><%= link_to "Sign up!", new_user_path %></p>
-</ul>
+<p><%= link_to "Sign up!", new_user_path,
+     { :class=>"buttonlink" } %></p>
+</div>

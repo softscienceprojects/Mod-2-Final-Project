@@ -12,6 +12,12 @@ class Event < ApplicationRecord
 
   validates :title, :description, :event_date, :event_time, :venue_id, :category_id, presence: true
 
+  def self.all_future_events_in_date_order
+    get_future_dates = self.all.select do |event|
+        event[:event_date] > Date.today
+      end
+    get_future_dates.sort {|a,b| a.event_date <=> b.event_date }
+  end
 
   def event_in_future?
     self.event_date > Date.today

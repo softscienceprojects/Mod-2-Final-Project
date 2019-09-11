@@ -1,7 +1,7 @@
 
 <div class="flex-container">
     <% @events.each do |event| %>
-        <div>
+        <div class="block-container">
             <h2><%= link_to event.title, event_path(event) %></h2>
             <h4><%= event.event_date.strftime("%A %-d %B %Y") %></h4>
         </div>

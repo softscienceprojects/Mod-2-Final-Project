@@ -3,7 +3,9 @@ class EventsController < ApplicationController
     before_action :require_login, only: [:show]
 
     def index
-        @events = Event.all
+        #@events = Event.all.order(event_date: :asc )
+        # @events = Event.all_future_events
+        @events = Event.all_future_events_in_date_order
     end
 
 
