@@ -151,6 +151,14 @@ a.buttonlink {
 
 /* FONTS */
 
+h1#logo {
+    text-shadow: -5px 5px #fff;
+}
+
+h1#logo:hover {
+    color: blue;
+}
+
 p.review-date {
     font-size: .75em;
 }

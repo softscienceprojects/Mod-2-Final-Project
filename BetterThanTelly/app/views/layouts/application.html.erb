@@ -15,18 +15,18 @@
 <!--  <div class="flex-container"> -->
 <div class="flex-container">
     <div class="row">
-      <h1>BetterThanTelly</h1>
+      <h1 id="logo">BetterThanTelly</h1>
     </div>
     </div>
 
   <div class="row">
     <ul class="nav">
-      <li><p><%= link_to "All events", events_path %>  |  </p></li>
-      <li><p><%= link_to "View venues", venues_path %>  |  </p></li>
-      <li><p><%= link_to "Create an event", new_event_path %>  |  </p></li>
-      <li><p><%= link_to "View reviews", reviews_path %>  |  </p></li>
-      <li><p><%= link_to "Create review", new_review_path %>  |  </p></li>
+      <li><p><%= link_to "Events", events_path %>  |  </p></li>
+      <li><p><%= link_to "Venues", venues_path %>  |  </p></li>
+      <li><p><%= link_to "Reviews", reviews_path %>  |  </p></li>
     <% if logged_in? %>
+      <li><p><%= link_to "Create event", new_event_path %>  |  </p></li>
+      <li><p><%= link_to "Leave review", new_review_path %>  |  </p></li>
       <li><p><%= link_to "Your profile", user_path(session[:user_id]) %>  |  </p></li>
       <li><p><%= link_to "Logout", logout_path, method: :post %></p></li>
     <% else %>
