@@ -38,7 +38,7 @@ class User < ApplicationRecord
     #call this method to get event ids in order for reccomendation
     def reccomend_me
         event_list = score_events.keys
-        event_list.first 3
+        event_list.first 5
     end
 
 
@@ -80,8 +80,8 @@ class User < ApplicationRecord
 
     def score_events
         ranking = Hash.new(0)
-        #get_future_events
-        Event.all.each do |event|
+        #Event.all.each 
+        get_future_events.each do |event|
             
             category = score_assign(favourite_profile[:categories], event.category_id)
             host = score_assign(favourite_profile[:hosts], event.user_id)
