@@ -1,13 +1,15 @@
 <div class="row">
     <div class="col-12">
         <h1>Venues</h1>
-        <p><%= link_to "Make a new venue", new_venue_path %></p>
+        <p><%= link_to "Make a new venue", new_venue_path, { :class=> "buttonlink"} %></p>
     </div>
 </div>
 
 <div class="flex-container">
     <% @venues.each do |venue| %>
-       <div class="col-6"><h3><%= link_to venue.name, venue_path(venue) %></h3></div>
+       <div class="block-container">
+       <h2><%= link_to venue.name, venue_path(venue) %></h2>
+       </div>
     <% end %>
 </div>
 

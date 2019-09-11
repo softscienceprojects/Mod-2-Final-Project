@@ -7,7 +7,7 @@
 <div class="flex-container">
 
 <% if !logged_in? %>
-Please <%= link_to "log in", login_path %> to create an event
+<h2>Please <%= link_to "log in", login_path %> to create an event</h2>
 <% else %>
 <div class="block-container">
     <%= form_for(@event) do |f| %>
@@ -47,13 +47,9 @@ Please <%= link_to "log in", login_path %> to create an event
 
 
   <% flash.each do |name, messages| %>
-  <div class="flash-errors">
-
-  <ul>
-  <% messages.each do |message| %>
-    <p><%= message %></p>
+    <div class="flash-warnings">
+      <% messages.each do |message| %>
+       <p><%= message %></p>
+    <% end %>
+    </div>
   <% end %>
-  </ul>
-
-  </div>
-<% end %>

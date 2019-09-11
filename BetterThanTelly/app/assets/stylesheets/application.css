@@ -29,12 +29,25 @@
 
  .nav p, .nav a {
      display: inline-block;
+     font-weight: 500;
      color: white;
      text-decoration: none;
  }
 
  .nav a:hover {
-    color: #408fff;
+    animation-duration: 1s;
+    animation-name: navhover;
+    animation-iteration-count: infinite;
+ }
+
+ @keyframes navhover {
+    from {
+        color: #408fff;
+    }
+
+    to {
+        color: #e83f5e;
+    }
  }
 
  /* CONTAINERS */
@@ -48,14 +61,19 @@
     margin: 10px;
  }
 
+ .grid-container {
+     display: inline-grid;
+     grid-template: auto;
+ }
+
  .block-container {
     display: inline-block;
     padding: 10px;
     flex-wrap: wrap;
-    /*margin: auto;*/
+    margin: 10px;
     justify-content: space-evenly;
     width: 33%;
-    border: 1px solid black;
+    border: 5px solid black;
     max-width: 400px;
  }
 
@@ -63,6 +81,30 @@
     display: inline-block;
     align-self: flex-start;
     margin-right: 0;
+ }
+
+ .edit-box a {
+    background-color:  #333447;
+    width: 250px;
+    height: 50px;
+    font-size: 0.85em;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+ }
+
+ 
+ .flash-warnings {
+    border: 3px solid #e83f5e;
+    color: #e83f5e;
+    padding: 16px 32px;
+    position: relative;
+    display: block;
+    right: 50px;
+    height: auto;
  }
 
 
@@ -105,4 +147,10 @@ a.buttonlink {
     text-decoration: none;
     margin: 4px 2px;
     cursor: pointer;
+}
+
+/* FONTS */
+
+p.review-date {
+    font-size: .75em;
 }

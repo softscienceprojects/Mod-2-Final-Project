@@ -1,29 +1,33 @@
-<h1>Sign up to BetterThanTelly</h1>
-
-<div class="new-form">
-<ul>
-<%= form_for(@user) do |f| %>
-     <li>Name: <%= f.text_field :name %></li>
-     <li>Email: <%= f.email_field :email %></li>
-     <li>Password: <%= f.password_field :password %></li>
-     <li>Confirm your password: <%= f.password_field :password_confirmation %></li>
-     <%= f.submit %>
-<% end %>
-  </ul>
+<div class="row">
+  <div class="col-12">
+   <h1>Sign up to BetterThanTelly</h1>
   </div>
-
-<div>
-  <h3>Already have an account?</h3>
-  <p><%= link_to "Sign in!", login_path %></p>
 </div>
 
-  
-  <% flash.each do |name, messages| %>
-     <div class="flash-errors">
-     <ul>
-     <% messages.each do |message| %>
-          <li><%= message %></li>
-     <% end %>
-     </ul>
-     </div>
+
+<div class="flex-container">
+  <div class="block-container">
+  <%= form_for(@user) do |f| %>
+      <h4>Name: <%= f.text_field :name %></h4>
+      <h4>Email: <%= f.email_field :email %></h4>
+      <h4>Password: <%= f.password_field :password %></h4>
+      <h4>Confirm your password: <%= f.password_field :password_confirmation %></h4>
+      <%= f.submit %>
   <% end %>
+    </div>
+
+  <div>
+    <h2>Already have an account?</h2>
+    <p><%= link_to "Sign in!", login_path, { :class=> "buttonlink"} %></p>
+
+  <% flash.each do |name, messages| %>
+      <div class="flash-warnings">    
+        <% messages.each do |message| %>
+          <h4>  <%= message %> </h4>
+        <% end %>
+        </div>
+        <% end %>
+  </div>
+
+</div>
+

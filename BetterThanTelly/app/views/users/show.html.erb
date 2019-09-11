@@ -1,13 +1,13 @@
 <div class="row">
     <div class="col-12">
         <h1>Welcome to your user homepage, <%= @user.name %></h1>
-        <p><%= link_to "Edit your account", edit_user_path(@user) %></p>
+        <p><%= link_to "Edit your account", edit_user_path(@user), { :class=> "buttonlink"} %></p>
     </div>
 </div>
 
 <div class="flex-container">
     <div class="title-container">
-    <h4>Future Events you are going to</h4>
+    <h2>Future Events you are going to</h4>
     </div>
         <div class="block-container">
         <% if @future_events == []  %>
@@ -22,7 +22,7 @@
 
 <hr>
 <div class="flex-container">
-    <h4>Future Events you are hosting</h4>
+    <h2>Future Events you are hosting</h4>
     
     <div class="block-container">
     <% if @hosting_future == []  %>
@@ -38,10 +38,10 @@
 <hr>
 
 <div class="flex-container">
-    <h4>Past events you have attended</h4>
+    <h2>Past events you have attended</h4>
     <div class="block-container">
     <% if @past_events == []  %>
-        You have not attended any events. 
+        <p>You have not attended any events.</p>
     <% else %>
                 <% @past_events.each do |event|  %>
                 <p><%= link_to event.title, event_path(event) %></p>
@@ -53,11 +53,11 @@
 <hr>
 
 <div class="flex-container">
-<h4>Past events you have hosted</h4>
+<h2>Past events you have hosted</h4>
 
     <div class="block-container">
     <% if @hosting_past == []  %>
-        You have not hosted any events
+       <p> You have not hosted any events </p>
     <% else %>
                 <% @hosting_past.each do |event|  %>
                 <p><%= link_to event.title, event_path(event) %></p>
@@ -69,7 +69,7 @@
 
 <hr>
 <div class="flex-container">
-<h4>Recommended events for you</h4>
+<h2>Recommended events for you</h2>
     <div class="block-container">
     <!-- logic stuff here -->
 

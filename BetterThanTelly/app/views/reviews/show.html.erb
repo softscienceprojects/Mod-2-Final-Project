@@ -1,16 +1,34 @@
-<h1><%= @review.title %></h1>
+<div class="row">
+    <div class="col-12">
+        <h1>"<%= @review.title %>"</h1>
+    </div>
+</div>
 
-<p><%= @review.content %></p>
+<div class="flex-container">
+    <div class="block-container">
+    <p><%= @review.content %></p>
 
-<p>reviewer name: <%= @review.event.user.name %></p>
+     <div class="edit-box">
+    <% if @review.user_id == session[:user_id] %>
+        <p><%= link_to "Edit this review", edit_review_path(@review) %></p>
+    <% end %>
+    </div>
+    </div>
 
-<p>For the event: <%= link_to @review.event.title, event_path(@review.event) %></p>
-<p>At venue: <%= link_to @review.event.venue.name, venue_path(@review.event.venue) %></p>
-<p>In category: <%= link_to @review.event.category.name, category_path(@review.event.category) %></p>
+    <div class="grid-container">
+    <p>reviewer name: <%= @review.event.user.name %></p>
+   
+    <p>Event: <strong><%= link_to @review.event.title, event_path(@review.event) %></strong></p>
+    <p>Venue: <strong><%= link_to @review.event.venue.name, venue_path(@review.event.venue) %></strong></p>
+    <p>Category: <strong><%= link_to @review.event.category.name, category_path(@review.event.category) %></strong></p>
+    <p class="review-date">Review written on: <%= @review.created_at.strftime("%B %-d, %Y") %></p>
 
-<p>Review written on: <%= @review.created_at.strftime("%B %-d, %Y") %></p>
+    
+    </div>
+</div>
 
-<% if @review.user_id == session[:user_id] %>
-    <%= link_to "Edit this review", edit_review_path(@review) %>
 
-<% end %>
+
+
+   
+
