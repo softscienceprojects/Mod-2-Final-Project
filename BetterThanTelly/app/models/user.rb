@@ -35,6 +35,13 @@ class User < ApplicationRecord
     #Reccomendation Engine...
 
 
+    #call this method to get event ids in order for reccomendation
+    def reccomend_me
+        event_list = score_events.keys
+        event_list.first 3
+    end
+
+
     def get_positive_reviews
         all_reviews = Review.where(user_id: self.id)
         all_reviews.select{|review|review.rating > Review.rating_range.max/2 }
@@ -51,8 +58,43 @@ class User < ApplicationRecord
         categories = top_three(get_favourite_cat_by_reviews, get_favourite_cat_by_attendence)
         hosts =  top_three(get_favourite_host_by_reviews, get_favourite_host_by_attendence)
         venues = top_three(get_favourite_venue_by_reviews, get_favourite_host_by_attendence)
-        return "Categories: #{categories}, Hosts: #{hosts}, Venures #{venues}"
+        #return "Categories: #{categories}, Hosts: #{hosts}, Venures #{venues}"
+        favourites = {:categories => categories, :hosts => hosts, :venues => venues}
+        return favourites
+
     end
+
+    def score_assign(hash_item, event_attribute)
+        score = 0
+        if hash_item[0] == event_attribute
+            score = 3
+        elsif hash_item[1] == event_attribute
+            score = 2
+        elsif hash_item[2] == event_attribute
+            score = 1
+        else
+            score = 0
+        end
+        return score
+    end
+
+    def score_events
+        ranking = Hash.new(0)
+        #get_future_events
+        Event.all.each do |event|
+            
+            category = score_assign(favourite_profile[:categories], event.category_id)
+            host = score_assign(favourite_profile[:hosts], event.user_id)
+            venue = score_assign(favourite_profile[:venues], event.venue_id)
+
+            total = (category + host + venue)
+
+            ranking[event.id]=total
+        end
+        sort_by_soonest = ranking.sort_by{|key,value| Event.find(key).event_date}.to_h
+        return ranking.sort_by{|key,value| -value}.to_h
+    end
+
 
 
     #Category Based
@@ -60,7 +102,7 @@ class User < ApplicationRecord
         if get_events != []
             cat_hash  = Hash.new(0)
             get_events.each do |event|    
-                cat_hash[event.category.name] += 1
+                cat_hash[event.category_id] += 1
             end
             cat_hash.sort_by{|category,total_rating| -total_rating}#.first 3
             #cat_hash.to_h
@@ -73,7 +115,7 @@ class User < ApplicationRecord
         if get_positive_reviews != []
             cat_hash  = Hash.new(0)
             get_positive_reviews.each do |review|    
-                cat_hash[review.event.category.name] += review.rating
+                cat_hash[review.event.category_id] += review.rating
             end
             cat_hash.sort_by{|category,total_rating| -total_rating}#.first 3
             #cat_hash.to_h
