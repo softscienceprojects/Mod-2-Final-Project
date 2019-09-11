@@ -4,7 +4,7 @@
         <h1>Events</h1>
         <p>
         <%= form_tag events_path, method: :get do %>
-        <%= collection_select(:cat_search, :name, Category.all, :name, :name) %>
+        <%= collection_select(:cat_search, :name, Category.all, :name, :name, :selected => @cat_select, include_blank: 'All Categories') %>
         <%= submit_tag ("Filter by category") %>
         <% end %>
         
