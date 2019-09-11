@@ -6,6 +6,11 @@
 
 <div class="flex-container">
     <div class="block-container">
+    <div class="star-rating">
+                <% @review.rating.times do  %>
+                <h4> &#9734; </h4> 
+                <% end %>
+            </div>
     <p><%= @review.content %></p>
 
      <div class="edit-box">

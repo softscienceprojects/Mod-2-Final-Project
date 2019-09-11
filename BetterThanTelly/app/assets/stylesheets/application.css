@@ -66,13 +66,23 @@
      grid-template: auto;
  }
 
+ .star-rating {
+     display: inline-flex;
+     flex-wrap: no-wrap;
+     justify-content: flex-start;
+     width: 50px;
+     line-height: .9em;
+ }
+
  .block-container {
     display: inline-block;
-    padding: 10px;
     flex-wrap: wrap;
+    flex-flow: row wrap;
+    padding: 10px;
     margin: 10px;
     justify-content: space-evenly;
-    width: 33%;
+    min-height: 200px;
+    width: 53%;
     border: 5px solid black;
     max-width: 400px;
  }
@@ -141,6 +151,7 @@
 }
 
 textfield {
+    display: inline-block;
     width: 300px;
 }
 
@@ -170,6 +181,7 @@ a.buttonlink {
 h1#logo a {
     text-shadow: -5px 5px #fff;
     text-decoration: none;
+    position: relative;
 }
 
 h1#logo a:hover {
@@ -181,3 +193,4 @@ h1#logo a:hover {
 p.review-date {
     font-size: .75em;
 }
+

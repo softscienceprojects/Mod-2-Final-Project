@@ -18,7 +18,7 @@ body {
   top: 0;
   font-size: 100%;
   background-color: #f2f0eb;
-  
+
 }
 
 /* ROOT FONT STYLES */
@@ -53,6 +53,7 @@ h3 {
 
 h4 {
   font-size: 1.125rem;
+  line-height: 0.9;
 }
 
 h5 {
