@@ -8,8 +8,8 @@
 
 <div class="flex-container">
     <% @category.events.each do |event| %>
-      <div class="block-container"> 
-        <h4> <%= link_to event.title, event_path(event) %></h4>
+      <div class="block-container select-container"> 
+        <h2> <%= link_to event.title, event_path(event) %></h2>
       </div>
 
     <% end %>

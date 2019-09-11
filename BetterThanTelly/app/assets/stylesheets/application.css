@@ -42,7 +42,7 @@
 
  @keyframes navhover {
     from {
-        color: #408fff;
+        color: #dfe3f0;
     }
 
     to {
@@ -75,6 +75,22 @@
     width: 33%;
     border: 5px solid black;
     max-width: 400px;
+ }
+
+ .select-container:hover {
+    animation-duration: 1s;
+    animation-name: selecthover;
+    animation-fill-mode: forwards;
+ }
+
+ @keyframes selecthover {
+    from {
+        background-color: white;
+    }
+
+    to {
+        background-color:#dfe3f0;
+    }
  }
 
  .title-container {
@@ -151,12 +167,15 @@ a.buttonlink {
 
 /* FONTS */
 
-h1#logo {
+h1#logo a {
     text-shadow: -5px 5px #fff;
+    text-decoration: none;
 }
 
-h1#logo:hover {
-    color: blue;
+h1#logo a:hover {
+    color: #e83f5e;
+    animation-name: navhover;
+    animation-iteration-count: infinite;
 }
 
 p.review-date {
