@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
     before_action :find_event, only: [:show, :edit, :update, :destroy]
-    before_action :require_login, only: [:show]
+    before_action :require_login, only: [:show, :new, :update]
 
     def index
         #@events = Event.all.order(event_date: :asc )

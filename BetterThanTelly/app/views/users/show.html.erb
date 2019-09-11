@@ -44,7 +44,11 @@
         <p>You have not attended any events.</p>
     <% else %>
                 <% @past_events.each do |event|  %>
-                <p><%= link_to event.title, event_path(event) %></p>
+                <p><%= link_to event.title, event_path(event) %>
+                    <% if !event.reviews.find_by(:user_id==session[:user_id]) %><p>
+                      <%= link_to "Leave review ⤴", new_review_path, { :class=> "buttonlink"} %>
+                    <% end %>
+                </p>
                 <% end %>
     <% end %>
     </div>
@@ -59,9 +63,12 @@
     <% if @hosting_past == []  %>
        <p> You have not hosted any events </p>
     <% else %>
-                <% @hosting_past.each do |event|  %>
-                <p><%= link_to event.title, event_path(event) %></p>
-                <% end %>
+        <% @hosting_past.each do |event|  %>
+        <p><%= link_to event.title, event_path(event) %></p>
+        <% if Review.find_by(:event_id=>event.id) %>
+           <p><%= link_to "See reviews ⤴", reviews_path(:event_id=>event.id), { :class=> "buttonlink"}  %></p>
+        <% end %>
+    <% end %>
     <% end %>
     </div>
 </div>

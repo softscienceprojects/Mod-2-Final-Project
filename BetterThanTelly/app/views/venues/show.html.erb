@@ -7,12 +7,14 @@
 
 <div class="flex-container">
     <div>
-    <h4>Upcoming Events at this venue</h4>
+    <h2>Upcoming Events at this venue</h2>
     </div>
 
-    <div>
+    <div class="block-container">
     <% @venue.events.each do |event|  %>
+        <% if event.event_in_future? %>
     <p>  <%= link_to event.title, event_path(event) %> </p>
+        <% end %>
     <% end %>
     </div>
 </div>
@@ -21,6 +23,15 @@
 <div class="flex-container">
 
     <div>
-    <h4>Previous events at this venue</h4>
+    <h2>Previous events at this venue</h2>
     </div>
+
+    <div class="block-container">
+    <% @venue.events.each do |event|  %>
+        <% if !event.event_in_future? %>
+    <p>  <%= link_to event.title, event_path(event) %> </p>
+        <% end %>
+    <% end %>
+    </div>
+
 </div>

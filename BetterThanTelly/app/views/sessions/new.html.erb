@@ -22,4 +22,11 @@
             { :class=>"buttonlink" } %></p>
     </div>
 
+<% flash.each do |name, messages| %>
+    <div class="flash-warnings">
+      <% messages.each do |message| %>
+       <p><%= message %></p>
+    <% end %>
+    </div>
+  <% end %>
 </div>

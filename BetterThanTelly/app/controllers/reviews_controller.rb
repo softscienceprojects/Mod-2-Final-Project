@@ -3,7 +3,11 @@ class ReviewsController < ApplicationController
     before_action :find_user, only: [:new]
 
     def index
-        @reviews = Review.all
+        if params[:event_id]
+            @reviews = Review.where(:event_id=>params[:event_id])
+        else
+            @reviews = Review.all
+        end
     end
 
     def show

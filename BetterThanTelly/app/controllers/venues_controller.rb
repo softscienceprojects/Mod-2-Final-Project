@@ -1,5 +1,7 @@
 class VenuesController < ApplicationController
     before_action :find_venue, only: [:show]
+    before_action :require_login, only: [:show, :new, :update]
+
 
     def index
         @venues = Venue.all
