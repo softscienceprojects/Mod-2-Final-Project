@@ -51,7 +51,7 @@ class User < ApplicationRecord
 
     def top_three(list1,list2)
         list_merge = list1.push(list2).flatten.each_slice(2).map(&:first).uniq
-        three_only = list_merge.first 3
+        three_only = list_merge.first 5
     end
 
     def favourite_profile
