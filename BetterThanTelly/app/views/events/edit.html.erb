@@ -20,13 +20,13 @@
         <%= f.time_field :event_time %>
 
        <h4> <%= f.label :venue %> </h4>
-        <%= f.collection_select :venue_id, Venue.all, :id, :name, include_blank: 'Please choose a venue' %>
+        <%= f.collection_select :venue_id, Venue.all, :id, :name, {include_blank: 'Please choose a venue'}, {:class=>"select"} %>
 
        <h4><%= f.label :description %> </h4>
         <%= f.text_area :description %>
 
       <h4> <%= f.label :category %> </h4> 
-        <%= f.collection_select :category_id, Category.all, :id, :name, include_blank: 'Please choose a category' %>
+        <%= f.collection_select :category_id, Category.all, :id, :name, {include_blank: 'Please choose a category'}, {:class=>"select"} %>
     <br><br>
 
     <%= f.submit %>

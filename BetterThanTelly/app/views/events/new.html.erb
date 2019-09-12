@@ -13,31 +13,30 @@
     <%= form_for(@event) do |f| %>
         
         <%= f.hidden_field :user_id, :value=> session[:user_id] %>
-        <p>
-        <%= f.label :title %>
-        <%= f.text_field :title %>  </p>
+       
+       <h4> <%= f.label :title %> </h4>
+         <p><%= f.text_field :title %>  </p>
 
-        <p>
-        <%= f.label :event_date %>
-        <%= f.date_field :event_date %> </p>
+       
+       <h4> <%= f.label :event_date %> </h4>
+        <p> <%= f.date_field :event_date %> </p>
 
-        <p>
-        <%= f.label :event_time %>
-        <%= f.time_field :event_time %> </p>
+       
+        <h4><%= f.label :event_time %></h4>
+         <p><%= f.time_field :event_time %> </p>
 
-        <p>
-        <%= f.label :venue %>
-        <%= f.collection_select :venue_id, Venue.all, :id, :name, include_blank: 'Please choose a venue' %>
+        
+       <h4> <%= f.label :venue %></h4>
+       <p> <%= f.collection_select :venue_id, Venue.all, :id, :name, {include_blank: 'Please choose a venue'}, {:class=>"select"} %>
         </p>
 
-        <p>
-        <%= f.label :description %>
-        <%= f.text_area :description %>
-        </p>
+        
+        <h4><%= f.label :description %></h4>
+        <p><%= f.text_area :description %></p>
 
-        <p>
-        <%= f.label :category %>
-        <%= f.collection_select :category_id, Category.all, :id, :name, include_blank: 'Please choose a category' %>
+        
+        <h4><%= f.label :category %></h4>
+       <p> <%= f.collection_select :category_id, Category.all, :id, :name, {include_blank: 'Please choose a category'}, {:class=>"select"} %>
         </p>
 
     <%= f.submit %>

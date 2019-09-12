@@ -1,6 +1,7 @@
 class ReviewsController < ApplicationController
     before_action :find_review, only: [:show, :edit, :update, :destroy]
     before_action :find_user, only: [:new]
+    before_action :require_login, only: [:show, :edit, :update, :destroy]
 
     def index
         if params[:event_id]

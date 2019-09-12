@@ -11,12 +11,19 @@
     </div>
 
     <div class="block-container">
-    <% @venue.events.each do |event|  %>
-        <% if event.event_in_future? %>
-    <p>  <%= link_to event.title, event_path(event) %> </p>
+        <% if !@venue.events.empty? && @venue.future_events? %>
+            <% @venue.events.each do |event|  %>
+                <% if event.event_in_future? %>
+                    <p><%= link_to event.title, event_path(event) %> </p>
+                <% end %>
+            <% end %>
+        <% else %>
+            <h4>No events coming up! <%= link_to "Make one?", new_event_path %></h4>
         <% end %>
-    <% end %>
+    
+        
     </div>
+
 </div>
 
 <hr>
@@ -27,10 +34,14 @@
     </div>
 
     <div class="block-container">
-    <% @venue.events.each do |event|  %>
-        <% if !event.event_in_future? %>
-    <p>  <%= link_to event.title, event_path(event) %> </p>
+    <% if !@venue.events.empty? && !@venue.future_events? %>  
+        <% @venue.events.each do |event|  %>
+            <% if !event.event_in_future? %>
+                <p><%= link_to event.title, event_path(event) %> </p>
+            <% end %>
         <% end %>
+    <% else %>
+        <h4>No previous events!</h4>
     <% end %>
     </div>
 

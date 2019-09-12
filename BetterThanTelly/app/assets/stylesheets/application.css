@@ -42,7 +42,7 @@
 
  @keyframes navhover {
     from {
-        color: #408fff;
+        color: #dfe3f0;
     }
 
     to {
@@ -66,15 +66,41 @@
      grid-template: auto;
  }
 
+ .star-rating {
+     display: inline-flex;
+     flex-wrap: no-wrap;
+     justify-content: flex-start;
+     width: 50px;
+     line-height: .9em;
+ }
+
  .block-container {
     display: inline-block;
-    padding: 10px;
     flex-wrap: wrap;
+    flex-flow: row wrap;
+    padding: 10px;
     margin: 10px;
     justify-content: space-evenly;
-    width: 33%;
+    min-height: 200px;
+    width: 53%;
     border: 5px solid black;
     max-width: 400px;
+ }
+
+ .select-container:hover {
+    animation-duration: 1s;
+    animation-name: selecthover;
+    animation-fill-mode: forwards;
+ }
+
+ @keyframes selecthover {
+    from {
+        background-color: white;
+    }
+
+    to {
+        background-color:#dfe3f0;
+    }
  }
 
  .title-container {
@@ -119,12 +145,19 @@
     cursor: pointer;
 }
 
+
 .select {
     background-color: #333447;
-
+    color: white;
+    padding: 16px 32px;
+    cursor: pointer;
+    height: 50px;
+    -webkit-appearance: none;
+   
 }
 
 textfield {
+    display: inline-block;
     width: 300px;
 }
 
@@ -138,6 +171,23 @@ textarea {
     padding: 16px;
 }
 
+.easteregg {  /*  ☺  */
+    position: relative;
+    display: relative;
+}
+
+.easteregg:hover {
+    display: none;
+}
+
+input[type=submit]:hover {
+    background-color: blueviolet;
+}
+
+
+/* FONTS */
+
+
 a.buttonlink {
     background-color:  #333447;
     border: none;
@@ -149,16 +199,20 @@ a.buttonlink {
     cursor: pointer;
 }
 
-/* FONTS */
 
-h1#logo {
+h1#logo a {
     text-shadow: -5px 5px #fff;
+    text-decoration: none;
+    position: relative;
 }
 
-h1#logo:hover {
-    color: blue;
+h1#logo a:hover {
+    color: #e83f5e;
+    animation-name: navhover;
+    animation-iteration-count: infinite;
 }
 
 p.review-date {
     font-size: .75em;
 }
+
