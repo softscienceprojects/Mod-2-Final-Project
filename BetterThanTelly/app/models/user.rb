@@ -32,38 +32,18 @@ class User < ApplicationRecord
         get_host_events.select{|event| event.event_date >= Date.today}
     end
 
-    #Reccomendation Engine...
+    # ********** Reccomendation Engine ***************
 
 
-    #call this method to get event ids in order for reccomendation
+    #call this method to get reccomened events for a user
     def reccomend_me
         event_list = score_events.keys
         event_list.first 5
     end
 
 
-    def get_positive_reviews
-        all_reviews = Review.where(user_id: self.id)
-        all_reviews.select{|review|review.rating > Review.rating_range.max/2 }
-        return all_reviews
-    end
-
-
-    def top_three(list1,list2)
-        list_merge = list1.push(list2).flatten.each_slice(2).map(&:first).uniq
-        three_only = list_merge.first 5
-    end
-
-    def favourite_profile
-        categories = top_three(get_favourite_cat_by_reviews, get_favourite_cat_by_attendence)
-        hosts =  top_three(get_favourite_host_by_reviews, get_favourite_host_by_attendence)
-        venues = top_three(get_favourite_venue_by_reviews, get_favourite_host_by_attendence)
-        #return "Categories: #{categories}, Hosts: #{hosts}, Venures #{venues}"
-        favourites = {:categories => categories, :hosts => hosts, :venues => venues}
-        return favourites
-
-    end
-
+    ####### These methods check a users favourites against events #########
+    
     def score_assign(hash_item, event_attribute)
         score = 0
         if hash_item[0] == event_attribute
@@ -80,8 +60,9 @@ class User < ApplicationRecord
 
     def score_events
         ranking = Hash.new(0)
-        #Event.all
-        get_future_events.each do |event|
+        
+        #get_future_events
+        Event.all_future_events_in_date_order.each do |event|
             
             category = score_assign(favourite_profile[:categories], event.category_id)
             host = score_assign(favourite_profile[:hosts], event.user_id)
@@ -95,20 +76,52 @@ class User < ApplicationRecord
         return ranking.sort_by{|key,value| -value}.to_h
     end
 
+    ################################################################
 
 
+    ####### These methods determin a users favourites ############
+
+    def get_positive_reviews
+        all_reviews = Review.where(user_id: self.id)
+        all_reviews.select{|review|review.rating > Review.rating_range.max/2 }
+        return all_reviews
+    end
+
+
+    def top_three(list1,list2)
+        if list1 == 0 
+            list_merge = list2.flatten.each_slice(2).map(&:first).uniq
+        else
+            list_merge = list1.push(list2).flatten.each_slice(2).map(&:first).uniq
+        end
+        three_only = list_merge.first 3
+    end
+
+    def favourite_profile
+        categories = top_three(get_favourite_cat_by_reviews, get_favourite_cat_by_attendence)
+        hosts =  top_three(get_favourite_host_by_reviews, get_favourite_host_by_attendence)
+        venues = top_three(get_favourite_venue_by_reviews, get_favourite_host_by_attendence)
+        #return "Categories: #{categories}, Hosts: #{hosts}, Venures #{venues}"
+        favourites = {:categories => categories, :hosts => hosts, :venues => venues}
+        return favourites
+
+    end
+
+    
     #Category Based
     def get_favourite_cat_by_attendence
         if get_events != []
+             cat_hash = Hash.new(0)
+             get_events.each do |event|    
+                 cat_hash[event.category_id] += 1
+            end
+        else
             cat_hash  = Hash.new(0)
-            get_events.each do |event|    
+            Event.all_future_events_in_date_order.each do |event|    
                 cat_hash[event.category_id] += 1
             end
-            cat_hash.sort_by{|category,total_rating| -total_rating}#.first 3
-            #cat_hash.to_h
-        else
-        0
         end
+        cat_hash.sort_by{|category,total_rating| -total_rating}
     end
 
     def get_favourite_cat_by_reviews
@@ -144,10 +157,14 @@ class User < ApplicationRecord
             get_events.each do |event|    
                 host_hash[event.user_id] += 1
             end
-            host_hash.sort_by{|host,total_rating| -total_rating}
+            
         else
-        0
+            host_hash  = Hash.new(0)
+            Event.all_future_events_in_date_order.each do |event|    
+                host_hash[event.user_id] += 1
+            end
         end
+        host_hash.sort_by{|host,total_rating| -total_rating}
     end
 
     #Venue Based
@@ -164,18 +181,24 @@ class User < ApplicationRecord
         end
     end
 
-    def get_favourite_host_by_attendence
+    def get_favourite_venue_by_attendence
         if get_events != []
-            host_hash  = Hash.new(0)
+            venue_hash  = Hash.new(0)
             get_events.each do |event|    
-                host_hash[event.user_id] += 1
+                venue_hash[event.venue_id] += 1
             end
-            host_hash.sort_by{|host,total_rating| -total_rating}
         else
-        0
+        #default list...
+        venue_hash  = Hash.new(0)
+        Event.all_future_events_in_date_order.each do |event|    
+            venue_hash[event.venue_id] += 1
+            end
         end
+        venue_hash.sort_by{|venue,total_rating| -total_rating}
     end
 
+ 
+#########################################################
 
 
 
