@@ -51,7 +51,7 @@ class User < ApplicationRecord
 
     def top_three(list1,list2)
         list_merge = list1.push(list2).flatten.each_slice(2).map(&:first).uniq
-        three_only = list_merge.first 3
+        three_only = list_merge.first 5
     end
 
     def favourite_profile
@@ -80,8 +80,8 @@ class User < ApplicationRecord
 
     def score_events
         ranking = Hash.new(0)
-        #get_future_events
-        Event.all.each do |event|
+        #Event.all
+        get_future_events.each do |event|
             
             category = score_assign(favourite_profile[:categories], event.category_id)
             host = score_assign(favourite_profile[:hosts], event.user_id)
