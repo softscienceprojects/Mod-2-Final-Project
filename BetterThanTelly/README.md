@@ -1,24 +1,20 @@
-# README
+# Welcome to BetterThanTelly!
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This app will allow you to sign up to see events, create events and venues, attend events and get recommendations for upcoming events you may be interested in, based off your past behaviour with the app.
 
-Things you may want to cover:
+See events in categories and per venue. 
 
-* Ruby version
+Sign up to create a user profile and log in and out to the app.
 
-* System dependencies
+After you have 'attended' an event, and the event is in the past, you are prompted to create a review which will influence what is recommended to you. After you write a review, only you as the author are able to edit it. 
 
-* Configuration
+If you host an event, you will see reviews once they are left for the events you put on. As the host, you can also edit the event after initial creation. 
 
-* Database creation
+Using:
+Ruby 2.6.1
+Rails 6
 
-* Database initialization
+To use:
+Fork and clone this repository down.
+Rake db:migrate and Rake db:seed to use the included seed data. 
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
