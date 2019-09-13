@@ -18,9 +18,11 @@
  /* NAV */
 
  .nav{
-    background-color: #333447;
+     background-color: #333447; 
+    /* background-color: hsla(0, 100%, 40%, 0.3); */
     margin: 0;
     text-align: center;
+    
  }
 
  .nav li {
