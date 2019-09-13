@@ -34,7 +34,7 @@
     </div>
 
     <div class="block-container">
-    <% if !@venue.events.empty? && !@venue.future_events? %>  
+    <% if !@venue.events.empty? && @venue.future_events? %>  
         <% @venue.events.each do |event|  %>
             <% if !event.event_in_future? %>
                 <p><%= link_to event.title, event_path(event) %> </p>

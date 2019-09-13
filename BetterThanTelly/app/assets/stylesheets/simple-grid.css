@@ -17,8 +17,8 @@ body {
   left: 0;
   top: 0;
   font-size: 100%;
-  background-color: #f2f0eb;
-
+  /* background-color: #f2f0eb;  #d9dfd1 */
+  background: #f2f0eb url('/assets/bg-faded.png')no-repeat left top;
 }
 
 /* ROOT FONT STYLES */
@@ -31,7 +31,8 @@ body {
 
 /* TYPOGRAPHY */
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Work Sans', sans-serif;
+  /* font-family: 'Work Sans', sans-serif; */
+  font-family: 'Helvetica', sans-serif;
 
 }
 
@@ -41,6 +42,7 @@ p {
 
 h1 {
   font-size: 2.5rem;
+  text-align: center
 }
 
 h2 {
