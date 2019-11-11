@@ -2,6 +2,8 @@
 
 This app will allow you to sign up to see events, create events and venues, attend events and get recommendations for upcoming events you may be interested in, based off your past behaviour with the app.
 
+Learn about how it recommends which events you may be interested in on [Chris's medium article.](https://medium.com/@chrishodge87/a-simple-ish-recommendation-engine-f414577a492c)
+
 ## Try it out
 See it in action at [https://betterthantelly.herokuapp.com/].
 You can either sign up or use the test account `e@e.com` - password: `e`.
